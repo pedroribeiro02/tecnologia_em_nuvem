@@ -21,6 +21,10 @@ sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:${PORT}>/" /etc/apache2/sites-avai
 RUN echo 'Directory /var/www/html>' >> /etc/apache2/apache2.conf && \
     echo '  Options Indexes FollowSymLinks' >> /etc/apache2/apache2.conf && \
     echo '  AllowOverride All' >> /etc/apache2/apache2.conf && \
-    echo '</Directory>' >> /etc/apache2/apache2.conf && \
+    echo '</Directory>' >> /etc/apache2/apache2.conf
 
 # Expõe a porta corretamente
+EXPOSE ${PORT}
+
+#Inicia o Apache
+CMD ["apache2-foreground"]
